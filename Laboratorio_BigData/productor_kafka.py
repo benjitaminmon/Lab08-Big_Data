@@ -17,8 +17,8 @@ def conectar_kafka():
         return None
 
 # 2. Simulación de Datos (Creatividad de dominio)
-usuarios = ['Benjamin', 'Janiera', 'Berenice', 'Rayen', 'Esteban', 'Benji', 'Amy', 'Gerardini', 'Shanara', 'Javiera']
-acciones = ['login', 'descarga_material', 'ver_clase_grabada', 'solicitud_ayudantia', 'logout']
+usuarios = ['Usuario1', 'Usuario2', 'Usuario3', 'Usuario4', 'Usuario5', 'Usuario6', 'Usuario7', 'Usuario8', 'Usuario9', 'Usuario10']
+acciones = ['despertar', 'desayunar', 'trabajar', 'almorzar', 'dormir']
 
 def generar_evento():
     return {
