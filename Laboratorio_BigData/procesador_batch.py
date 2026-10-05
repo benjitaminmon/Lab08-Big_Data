@@ -1,5 +1,5 @@
 import os
-os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.1 pyspark-shell'
+os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages org.apache.spark:spark-sql-kafka-0-10_2.13:4.2.0 pyspark-shell'
 
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import from_json, col
@@ -34,8 +34,8 @@ reporte_csv = df_parsed.groupBy("usuario").count().orderBy(col("count").desc())
 print("Vista previa del reporte Batch:")
 reporte_csv.show()
 
-# Guardar en una carpeta CSV (Capa de Servicio)
-ruta_salida = "reporte_batch_usuarios"
-print(f"Guardando reporte en la carpeta: {ruta_salida}...")
-reporte_csv.write.mode("overwrite").csv(ruta_salida, header=True)
-print("¡Reporte generado exitosamente!")
+# Guardar en CSV usando Pandas para evitar bloqueos de Windows
+print("Guardando reporte en archivo CSV...")
+df_pandas = reporte_csv.toPandas()
+df_pandas.to_csv("reporte_batch_usuarios.csv", index=False)
+print("¡Reporte generado exitosamente en el archivo reporte_batch_usuarios.csv!")
