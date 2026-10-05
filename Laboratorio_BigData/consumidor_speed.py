@@ -1,4 +1,6 @@
 import os
+import findspark
+findspark.init()
 # Tip de resolución de problemas: Descarga automáticamente el conector de Kafka para Spark
 os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages org.apache.spark:spark-sql-kafka-0-10_2.13:4.2.0 pyspark-shell'
 
